@@ -4,13 +4,6 @@
 import spacy
 # nlp = spacy.cli.download("en_core_web_md")
 nlp = spacy.load('en_core_web_md')
-# AFTER THE FIRST DOWNLOAD, COMMENT OUT the spacy.cli.download(...) variable.
-# Your spaCy language model will already be stored in your Python environment.
-# ABOUT WHAT SPACY SHOULD LOAD: Some tutorials direct us to en_core_web_md
-# There are _sm, _md, and _lg models built into spaCy. Each takes up more space than the others, but
-# contains more data so may be more accurate/precise.
-# If we try the sm model, we're told that it does not have word vectors loaded, so it uses tagger, parser and NER (named
-# entity recognition to calculate similarity instead. Better to switch to the md model--but worth comparing results!
 
 import os
 
@@ -59,10 +52,11 @@ def readTextFiles(filepath):
 
         # Now, let's open an empty dictionary! We'll fill it up with the for loop just after it.
         # The for-loop goes over each token and gets its values
-        highSimilarityDict = {"prince-charles-scp-4.txt", "prince-charles-scp-2.txt", "prince-charles-scp-3.txt", "prince-charles-scp-1.txt"}
+        highSimilarityDict = {"The_Silmarillion.txt", "web.txt"}
         sortedhighSimilarityDict = sorted(highSimilarityDict)
 
         print(sortedhighSimilarityDict)
+
         for token in tokens:
             if(token and token.vector_norm):
                 # if token not in highSimilarityDict.keys(): # Alas, this did not work to remove duplicates from my dictionary. :-(
@@ -74,10 +68,6 @@ def readTextFiles(filepath):
         print(highSimilarityDict)
 
 
-        # ebb: When I printed the highSimilarityDict, I noticed that there are duplicate entries.
-        # I tried a couple of strategies to remove them. One is commented-out above.
-        # The strategy below actually worked, and I based it on this example:
-        # https://tutorial.eyehunts.com/python/python-remove-duplicates-from-dictionary-example-code/
         highSimilarityReduced = {}
         for key, value in highSimilarityDict.items():
             if value not in highSimilarityReduced.values():
