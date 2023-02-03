@@ -2,7 +2,7 @@
 # Our resource: The Python os module + a handy code example:
 #  https://www.geeksforgeeks.org/how-to-read-multiple-text-files-from-folder-in-python/
 import spacy
-nlp = spacy.cli.download("en_core_web_md")
+# nlp = spacy.cli.download("en_core_web_md")
 nlp = spacy.load('en_core_web_md')
 # AFTER THE FIRST DOWNLOAD, COMMENT OUT the spacy.cli.download(...) variable.
 # Your spaCy language model will already be stored in your Python environment.
@@ -59,6 +59,13 @@ def readTextFiles(filepath):
 
         # Now, let's open an empty dictionary! We'll fill it up with the for loop just after it.
         # The for-loop goes over each token and gets its values
+        files = {"games.html", "scripts.html", " ChatGPT.txt"}
+        sortedfiles = sorted(files)
+
+        print(sortedfiles)
+
+
+
         highSimilarityDict = {}
         for token in tokens:
             if(token and token.vector_norm):
@@ -66,9 +73,10 @@ def readTextFiles(filepath):
                 if wordOfInterest.similarity(token) > .3:
                     highSimilarityDict[token] = wordOfInterest.similarity(token)
                     # The line above creates the structure for each entry in my dictionary.
-                        # print(token.text, "about this much similar to", wordOfInterest, ": ", wordOfInterest.similarity(token))
+                         # print(token.text, "about this much similar to", wordOfInterest, ": ", wordOfInterest.similarity(token))
         print("This is a dictionary of words most similar to the word " + wordOfInterest.text + " in this file.")
-        # print(highSimilarityDict)
+        print(highSimilarityDict)
+
 
         # ebb: When I printed the highSimilarityDict, I noticed that there are duplicate entries.
         # I tried a couple of strategies to remove them. One is commented-out above.
