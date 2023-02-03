@@ -59,14 +59,10 @@ def readTextFiles(filepath):
 
         # Now, let's open an empty dictionary! We'll fill it up with the for loop just after it.
         # The for-loop goes over each token and gets its values
-        files = {"games.html", "scripts.html", " ChatGPT.txt"}
-        sortedfiles = sorted(files)
+        highSimilarityDict = {"prince-charles-scp-4.txt", "prince-charles-scp-2.txt", "prince-charles-scp-3.txt", "prince-charles-scp-1.txt"}
+        sortedhighSimilarityDict = sorted(highSimilarityDict)
 
-        print(sortedfiles)
-
-
-
-        highSimilarityDict = {}
+        print(sortedhighSimilarityDict)
         for token in tokens:
             if(token and token.vector_norm):
                 # if token not in highSimilarityDict.keys(): # Alas, this did not work to remove duplicates from my dictionary. :-(
