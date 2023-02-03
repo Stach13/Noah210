@@ -5,8 +5,8 @@
 
 import spacy
 # Need line 8 the first time: Then comment it out after the first time you run it:
-nlp = spacy.cli.download("en_core_web_sm")
-# nlp = spacy.load('en_core_web_sm')
+nlp = spacy.cli.download("en_core_web_md")
+nlp = spacy.load('en_core_web_md')
 
 ChatGPT = open('ChatGPT.txt', encoding='utf8')
 words = ChatGPT.read()
