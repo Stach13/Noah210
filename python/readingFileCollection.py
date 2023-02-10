@@ -46,21 +46,28 @@ def readTextFiles(filepath):
         tokens = nlp(stringFile)
         # playing with vectors here
         vectors = tokens.vector
-
+        # 2023-02-26 ebb: The line below is where you set your word of interest.
         wordOfInterest = nlp(u'panic')
         # print(wordOfInterest, ': ', wordOfInterest.vector_norm)
 
         # Now, let's open an empty dictionary! We'll fill it up with the for loop just after it.
         # The for-loop goes over each token and gets its values
         highSimilarityDict = {}
+<<<<<<< HEAD
         sortedhighSimilarityDict = sorted(highSimilarityDict)
 
         print(sortedhighSimilarityDict)
+=======
+        # sortedhighSimilarityDict = sorted(highSimilarityDict)
+        # 2023-02-06 ebb: The highSimlarityDict needs to be empty up here.
+        # ebb: It will be populated by the for loop. This is a pretty common Python strategy
+        # to create an empty data structure and then run a for-loop to fill it.
+>>>>>>> 7ce464b191861fdd457b0d4f37f053b812498437
 
         for token in tokens:
             if(token and token.vector_norm):
                 # if token not in highSimilarityDict.keys(): # Alas, this did not work to remove duplicates from my dictionary. :-(
-                if wordOfInterest.similarity(token) > .3:
+                if wordOfInterest.similarity(token) > .5:
                     highSimilarityDict[token] = wordOfInterest.similarity(token)
                     # The line above creates the structure for each entry in my dictionary.
                          # print(token.text, "about this much similar to", wordOfInterest, ": ", wordOfInterest.similarity(token))
