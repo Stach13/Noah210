@@ -52,7 +52,7 @@ def readTextFiles(filepath):
 
         # Now, let's open an empty dictionary! We'll fill it up with the for loop just after it.
         # The for-loop goes over each token and gets its values
-        highSimilarityDict = {"The_Silmarillion.txt", "web.txt"}
+        highSimilarityDict = {}
         sortedhighSimilarityDict = sorted(highSimilarityDict)
 
         print(sortedhighSimilarityDict)
