@@ -7,15 +7,18 @@ archive_url = "https://www.simplyscripts.com/c.html"
 
 def get_names():
     r = requests.get(archive_url)
+    print(r)
 
     soup = bs4.BeautifulSoup(r.content, 'html.parser')
 
-    for item in soup.select('td[a]'):
+
+    for item in soup.select('div#movie_wide > table > tr > td'):
         link = item.find('a')
-        href = archive_url + link['href']
+        href = archive_url + item['href']
         print(href)
-def download_links(href):
-    file_name = href.split('/')[-1]
+        download_links(href)
+ def download_links(href):
+     file_name = href.split('/')[-1]
     print("Downloading file: " + file_name)
 
     # create response object
@@ -23,11 +26,11 @@ def download_links(href):
 
     workingDir = os.getcwd()
     print("current working directory: " + workingDir)
-    fileDeposit = os.path.join(workingDir, 'movie-names', file_name)
+    fileDeposit = os.path.join(workingDir, 'movie-names')
     print(fileDeposit)
 
     with open(fileDeposit, 'wb') as f:
-        for item in soup.select('td[a]'):
+        for item in soup.findALl('td'):
             link = item.find('a')
             href = archive_url + link['href']
             f.write(href)
