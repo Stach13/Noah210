@@ -17,10 +17,9 @@ def get_names():
         href = archive_url + item['href']
         print(href)
         download_links(href)
- def download_links(href):
-     file_name = href.split('/')[-1]
+def download_links(href):
+    file_name = href.split('/')[-1]
     print("Downloading file: " + file_name)
-
     # create response object
     r = requests.get(href, stream = True)
 
